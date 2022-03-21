@@ -1,0 +1,46 @@
+#!/usr/bin/env node
+
+const { build } = require('esbuild')
+const fs = require('fs')
+const glob = require("tiny-glob")
+const watch = require('node-watch')
+
+const compile = (file) => (
+  build({
+    entryPoints: [file],
+    entryNames: '[dir]/[name]',
+    outbase: 'src',
+    outdir: 'dist',
+    bundle: false,
+    minify: false,
+    sourcemap: 'inline',
+    platform: 'node',
+    format: 'cjs',
+    target: 'node14',
+  })
+)
+
+const buildAll = async () => {
+
+  // remove dist
+  if (fs.existsSync('dist'))
+    fs.rmSync('dist', { recursive: true })
+
+  const files = await glob("./src/**/*.js")
+
+  for (const file of files) {
+    console.log(`Building: ${file}`)
+    await compile(file)
+  }
+
+  console.log('Build complete')
+}
+
+buildAll()
+
+if (process.env.WATCH) {
+  watch('src', { recursive: true }, (_evt, file) => {
+    console.log(`Building: ${file}`)
+    compile(file)
+  })
+}

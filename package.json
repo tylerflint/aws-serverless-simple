@@ -1,0 +1,30 @@
+{
+  "name": "aws-serverless-simple",
+  "version": "1.0.0",
+  "description": "Helpful libraries, components, and services for simplifying serverless apps on aws",
+  "main": "dist/index.js",
+  "repository": "git@github.com:tylerflint/aws-serverless-simple.git",
+  "author": "Tyler Flint <tylerflint@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "build": "bin/build",
+    "dev": "WATCH=true bin/build"
+  },
+  "devDependencies": {
+    "esbuild": "^0.14.27",
+    "node-watch": "^0.7.3",
+    "tiny-glob": "^0.2.9"
+  },
+  "dependencies": {
+    "algoliasearch": "^4.13.0",
+    "axios": "^0.26.1",
+    "jsonwebtoken": "^8.5.1",
+    "lodash.chunk": "^4.2.0",
+    "lodash.differencewith": "^4.5.0",
+    "lodash.get": "^4.4.2",
+    "lodash.isempty": "^4.4.0",
+    "lodash.isequal": "^4.5.0",
+    "lodash.uniq": "^4.5.0"
+  }
+}
